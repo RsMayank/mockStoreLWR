@@ -1,0 +1,30 @@
+<template>
+    <c-b2b-spinner if:false={hasProduct} message-state={messageState}> </c-b2b-spinner>
+    <c-b2b-spinner lwc:if={isLoading} message-state={messageState}> </c-b2b-spinner>
+    <!-- <lightning-spinner
+        if:false={hasProduct}
+        class="slds-is-relative slds-align_absolute-center slds-m-around_large"
+        alternative-text="Loading product information..."
+        size="medium"
+        variant="brand"
+    >
+    </lightning-spinner> -->
+    <c-product-details-display
+        if:true={hasProduct}
+        cart-locked={_isCartLocked}
+        category-path={displayableProduct.categoryPath}
+        custom-fields={displayableProduct.customFields}
+        description={displayableProduct.description}
+        image={displayableProduct.image}
+        in-stock={displayableProduct.inStock}
+        name={displayableProduct.name}
+        price={displayableProduct.price}
+        sku={displayableProduct.sku}
+        onaddtocart={addToCart}
+        oncreateandaddtolist={createAndAddToList}
+        inventorydetails ={data}
+    >
+    </c-product-details-display>
+
+    <c-show-toast-l-w-r></c-show-toast-l-w-r>
+</template>

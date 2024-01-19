@@ -1,0 +1,7 @@
+.slds-carousel__content{
+    height: auto !important;
+    display: none !important;
+}
+.slds-carousel__autoplay{
+    display: none !important;
+}

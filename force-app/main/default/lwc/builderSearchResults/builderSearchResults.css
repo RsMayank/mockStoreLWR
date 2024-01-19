@@ -1,0 +1,7 @@
+.comboboxview
+{
+    flex-flow: row-reverse;
+    /* display: flex;
+    flex-direction: column;
+    align-items: end; */
+}

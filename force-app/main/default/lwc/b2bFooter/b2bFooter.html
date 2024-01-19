@@ -1,0 +1,98 @@
+<template>
+    <template if:true={mapData}>
+      <div class="slds-grid slds-wrap cls">
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 LeftDiv" >
+              <a href={mapData.Progress} ><img src={progressIcon} class="SizeProgress" ></a>
+              <br>
+              <p style="color: rgba(145,146,144,255);">Copyright © 2023 Hero Bikes and/or its subsidiaries or affiliates.</p>
+              <p style="color: rgba(145,146,144,255);">All Rights Reserved</p>
+              <br>
+              <br>
+              <br>
+              <!-- <p style="color: rgba(36,36,37,255); font-weight: bold;" >Progress, Telerik, Ipswitch, and certain product names used herein are trademarks or registered trademarks of Progress Software Corporation and/or one of its subsidiaries or affiliates in the US and/or other countries. See <a href={mapData.Trademarks}>Trademarks</a> for appropriate markings </p> -->
+          </div>
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 RightDiv">
+              
+            <div>
+               <div >
+                  <a href={mapData.Facebook}><img src={Facebook} class="SizeLogoFirst"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href={mapData.Twitter}><img src={Twitter} class="SizeLogo"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href={mapData.YouTube}><img src={Youtube} class="SizeLogo"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href={mapData.Linkedin}><img src={Linkedin} class="SizeLogoLast"></a>
+               </div>
+
+               <br>
+               <div>
+                  <a href={mapData.Terms_of_Use} class="aFormattingFirst textLineInbetween">{labels.B2B_Terms}</a>&nbsp;
+                  <a href={mapData.Privacy_Center} class="aFormatting textLineInbetween">{labels.Privacy_Centre}</a>&nbsp;
+                  <a href={mapData.Trademarks} class="aFormatting textLineInbetween">{labels.B2B_TradeMark}</a> &nbsp;
+                  <a href={mapData.Offices} class="aFormattingLast">Offices</a>
+               </div>
+            </div> 
+            <br>
+            <br> 
+            <div>
+               <lightning-button variant="brand" label={labels.B2B_Contact_Us} title="Contact Us"  class="slds-m-left_x-small button" onclick={showModalBox}></lightning-button>
+            </div>                    
+          </div>
+          
+        </div>
+    </template>
+    <template if:true={isShowModalRegister}>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+         <div class="slds-modal__container">
+            <header class="slds-modal__header">
+               <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                  <lightning-icon icon-name="utility:close"
+                     alternative-text="close"
+                     variant="inverse"
+                     size="small" ></lightning-icon>
+                  <span class="slds-assistive-text">Close</span>
+               </button>
+               <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{labels.B2B_Contact_Us}</h2>
+            </header>
+        
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+              <lightning-textarea name="commentregister" label="Enter some text"  onchange={registerComm}></lightning-textarea>
+            </div>
+  
+            <footer class="slds-modal__footer">
+               <button class="slds-button slds-button_neutral" onclick={eventhandlerForUser}>Submit</button>
+            </footer>
+         
+         </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+   </template>
+
+   <template if:true={isShowModalGuest}>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+         <div class="slds-modal__container">
+            <header class="slds-modal__header">
+               <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                  <lightning-icon icon-name="utility:close"
+                     alternative-text="close"
+                     variant="inverse"
+                     size="small" ></lightning-icon>
+                  <span class="slds-assistive-text">Close</span>
+               </button>
+               <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">{labels.B2B_Contact_Us}</h2>
+            </header>
+        
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+               <lightning-input type="text" label="First Name" name="fName"></lightning-input>
+               <lightning-input type="text" label="Last Name" name="lName"></lightning-input>
+               <lightning-input type="email" label="Email" name="email"></lightning-input>
+               <lightning-input type="text" label="Company Name" name="cName"></lightning-input>
+              <lightning-textarea name="commentGuest" label="Enter some text" onchange={GuestComm}></lightning-textarea>
+            </div>
+  
+            <footer class="slds-modal__footer">
+               <button class="slds-button slds-button_neutral" onclick={eventhandlerForGuest}>Submit</button>
+            </footer>
+         
+         </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+   </template>
+</template>

@@ -1,0 +1,31 @@
+<!--
+  @description       : 
+  @author            : Gaurav Setia
+  @group             : 
+  @last modified on  : 07-27-2023
+  @last modified by  : Gaurav Setia
+-->
+<template>
+
+    <div 
+        if:true={disableCartAction} 
+        class="slds-notify slds-notify_alert slds-alert_warning slds-text-align_center" 
+        role="alert">
+        <h2>
+            <lightning-icon icon-name="utility:warning" size="small" class="slds-m-horizontal--x-small">
+            </lightning-icon>
+           {labels.B2B_Cart_Locked_Message}
+        </h2>
+    </div>
+
+    <div 
+        if:true={syncMsg}
+        class="slds-notify slds-notify_alert slds-alert_warning slds-text-align_center" 
+        role="alert">
+        <h2>
+            <lightning-icon icon-name="utility:warning" size="small" class="slds-m-horizontal--x-small">
+            </lightning-icon>
+            {labels.B2B_Cart_Warning_Message}
+        </h2>
+    </div>
+</template>

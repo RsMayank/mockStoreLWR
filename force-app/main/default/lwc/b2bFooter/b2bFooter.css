@@ -1,0 +1,100 @@
+/* -------------------------------------------------------------Screen Split Class----------------------------------------------------- */
+
+
+.cls{
+    background-color: rgba(230,235,245,255);
+    padding:2%;
+}
+
+
+
+/* -------------------------------------------------------------Screen Split(Right)----------------------------------------------------- */
+@media (min-width: 100px ) and (max-width: 768px){
+    .RightDiv{
+        margin-top: 50px !important;
+        text-align: center;
+    }
+
+}
+@media (min-width: 768px) {
+    .RightDiv{
+        text-align: right;
+    }
+}
+@media (min-width: 1024px) {
+    .RightDiv{
+        text-align: right;
+    }
+}
+
+/* -------------------------------------------------------------Screen Split(left)----------------------------------------------------- */
+
+@media (min-width: 480px) {
+    .LeftDiv{
+        text-align: center;
+    } 
+}
+@media (min-width: 768px) {
+    .LeftDiv{
+        text-align: left;
+    } 
+}
+@media (min-width: 1024px) {
+    .LeftDiv{
+        text-align: left;
+    } 
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------------------Formating Progress Logo ---------------------------------------------*/
+.SizeProgress{
+    height: auto;
+    width: 20%;
+    /* border: rgb(0, 0, 0) solid ; */
+}
+
+/* ----------------------------------------------------Formatint Social Logos ---------------------------------------------*/
+.SizeLogo{
+    height: 10%;
+    width: auto;
+
+}
+
+
+
+
+/* ----------------------------------------------------Formating Anchor Tags for sites files ---------------------------------------------*/
+.aFormatting{
+    color:rgba(2,2,2,255);
+    padding-left: 1%;
+    padding-right: 1%;
+
+}
+.aFormattingFirst{
+    color:rgba(2,2,2,255);
+    padding-right: 1%;
+}
+.aFormattingLast{
+    color:rgba(2,2,2,255);
+    padding-left: 1%;
+}
+.textLineInbetween{
+    border-right: 1px solid rgba(184,187,194,255);
+}
+
+
+
+/* -------------------------------------------butoon Formatting---------------------------------------  */
+
+
+
+
+lightning-button.button {
+	--sds-c-button-brand-color-background: rgba(230,235,245,255);
+    --sds-c-button-brand-text-color: #020202 ;
+    font-weight: bold;
+}

@@ -1,0 +1,194 @@
+<template>
+    <c-b2b-spinner if:true={showSpinner} message-state={messageState}> </c-b2b-spinner>
+    <div class="header">
+        <div>
+            <img class="logo" src={paclogo}>
+        </div>
+        <!-- <div class="header-right">
+            <a href="#" style="color: white;" onclick={showModalBox}>Support</a>
+        </div> -->
+    </div>
+    <div class="pageHeading">Create New Account</div>
+    <!-- <div if:true={isUserCreated} class="slds-form-element__control createdUser">
+        {newUserMsg}
+    </div> -->
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <div>{UserCreatError}</div>
+            <div if:true={userCreated} style="color: green;"> User created successfully.</div>
+            <label class="slds-form-element__label" for="text-input-id-54">
+                First Name<abbr class="slds-required" title="required">*
+                </abbr></label>
+            <input type="text" id="text-input-id-54" placeholder="Enter first name" required class="slds-input"
+                value={firstName} onchange={firstNameChange} />
+                <div if:true={showFirstNameErr} class="errText">Please Enter your first name.</div>
+            </div>
+        </div>
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <label class="slds-form-element__label" for="text-input-id-54">
+                Last Name<abbr class="slds-required" title="required">*
+                </abbr></label>
+            <input type="text" id="text-input-id-55" placeholder="Enter last name" required class="slds-input"
+                value={lastName} onchange={lastNameChange} />
+            <div if:true={showLastNameErr} class="errText">Please Enter your last name.</div>
+            </div>
+        </div>
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <label class="slds-form-element__label" for="text-input-id-54">
+                Email<abbr class="slds-required" title="required">*
+                </abbr></label>
+            <input type="text" id="text-input-id-56" placeholder="Enter business email" onfocusout={validateEmail} required class="slds-input"
+                value={email} onchange={emailChange} />
+            <div if:true={showEmailErr} class="errText">Please Enter yor Email in the correct formate.</div>
+            <div if:true={emailExistErr} class="errText">{showEmailExistErr}</div>
+        </div>
+    </div>
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <label class="slds-form-element__label" for="text-input-id-54">
+                Phone<abbr class="slds-required" title="required">*
+                </abbr></label>
+            <input type="text" id="text-input-id-57" placeholder="(xxx) xxx-xxxx" required class="slds-input"
+                value={phone} onchange={phoneChange} />
+                <div if:true={showPhoneErr} class="errText">Please Enter your Phone Number.</div>
+                <div if:true={phoneExistErr} class="errText">{showPhoneExistErr}</div>
+            </div>
+    </div>
+    <!-- <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <label class="slds-form-element__label" for="text-input-id-54">
+                Account Name<abbr class="slds-required" title="required">*
+                </abbr></label>
+            <input type="text" id="text-input-id-58" placeholder="Enter Account Name" required class="slds-input"
+                value={accountName} onchange={accountChange} />
+                <div if:true={showAccountErr} class="errText">Please Enter Account Name.</div>
+            </div>
+    </div> -->
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <label class="slds-form-element__label" for="text-input-id-54">
+                Password<abbr class="slds-required" title="required">*
+                </abbr></label>
+                <div class="slds-var-m-around_medium">
+                    <input type="password" id="text-input-id-59" placeholder="Enter password" required class="slds-input"
+                              value={password} onchange={passwordChange}
+                      onfocus={handleFocus}
+                      onblur={handleBlur} />
+                    <template if:true={showValidation}>
+                      <div class="slds-box slds-theme_shade slds-theme_alert-texture">
+                        <h3>Password must contain the following :</h3>
+                        <p data-id="letter" class="invalid">A lowercase letter</p>
+                        <p data-id="capital" class="invalid">A uppercase letter</p>
+                        <p data-id="number" class="invalid">A number character</p>
+                        <p data-id="length" class="invalid">Minimum 8 characters</p>
+                      </div>
+                    </template>
+                  </div>
+            <div if:true={showPasswordErr} class="errText">Password must be of minimum 8 character including number and one special character.</div>
+        </div>
+    </div>
+    
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <label class="slds-form-element__label" for="text-input-id-54">
+                Confirm Password<abbr class="slds-required" title="required">*</abbr>
+            </label>
+            <input type="password" id="text-input-id-60" placeholder="Confirm password" class="slds-input"
+                value={confirmPassword} onchange={confirmPasswordChange} />
+            <div if:true={showConfirmPasswordErr} class="errText">Please confirm your password once again.</div>
+            <div if:true={showPasswordMatchErr} class="errText">password do not match.</div>
+        </div>
+    </div>
+    <div class="buttonCss">
+        <button class="buttonClick" type="button" onclick={handleSignUp}>signup</button>
+    </div>
+
+<!-- ---------------------------support modal box ----------------------- -->
+<template if:true={isShowModal}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- modal header start -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                    <lightning-icon icon-name="utility:close"
+                    alternative-text="close"
+                    variant="inverse"
+                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Cancel</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Contact Us or Create a Write us.</h2>
+            </header>
+
+            <!-- modal body start -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-p-horizontal--small">
+                    <h2>Contact Us.</h2>
+                </div>
+                <div class="slds-p-horizontal--small">
+                    Phone: <a href="tel:1234567890">1234567890</a>
+                </div>
+                <div class="slds-p-horizontal--small">
+                    Email: <a href="mailto:techsupport@z.com">techsupport@z.com</a>
+                </div>
+                <div class="slds-p-horizontal--small">
+                    <p>website: zstore.com</p>
+                </div>
+                <div class="slds-border--top slds-p-top_small slds-p-bottom_small slds-p-horizontal--small">
+                    <h2>Write Us.</h2>
+                </div>
+                <div class="slds-grid slds-wrap">
+
+                    <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                        <div class="slds-form-element">
+                            <lightning-input label="First Name" value={firstName} onchange={leadChangefirst}></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                        <div class="slds-form-element">
+                        <lightning-input label="Last Name" value={lastName} onchange={leadChangelast}></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                        <div class="slds-form-element">
+                        <lightning-input label="Email" value={email} onchange={leadChangeemail}></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                        <div class="slds-form-element">
+                        <lightning-input label="Company" value={company} onchange={leadChangecomp}></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="slds-p-horizontal--small slds-col slds-m-bottom--medium">
+                        <div class="slds-form-element">
+                        <!-- <lightning-input type="textarea" label="Comments" value={description} onchange={leadChangedesc}></lightning-input> -->
+                        <lightning-textarea name="Comments" label="Comments" placeholder="Comments..." onchange={leadChangedesc}></lightning-textarea>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                        <div class="slds-form-element slds-p-top_large ">
+                        <lightning-button label="Submit Record" variant="brand" onclick={insertLeadAction}></lightning-button>
+                        </div>
+                    </div> -->
+                        
+                </div>
+
+            </div>
+
+            <!-- modal footer start-->
+            <footer class="slds-modal__footer">
+                <lightning-button class="slds-p-around--medium" label="Submit" variant="brand" onclick={insertLeadAction}></lightning-button>
+					<button class="slds-button slds-button_neutral" onclick={hideModalBox}>Cancel</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+<c-show-toast-l-w-r></c-show-toast-l-w-r>
+</template>

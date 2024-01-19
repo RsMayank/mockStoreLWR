@@ -1,0 +1,30 @@
+<!--
+  @description       : 
+  @author            : Mayank Srivastava
+  @group             : 
+  @last modified on  : 
+  @last modified by  : Mayank Srivastava
+-->
+<template>
+    <c-b2b-spinner if:false={showCarousels} message-state={messageState}> </c-b2b-spinner>
+    <template if:true={showCarousels}>
+        <template if:true={propertyScroll}>
+            <lightning-carousel scroll-duration={propertyScrollDuration} >
+                <template for:each={carousels}  for:item="currentCarouselObject">
+                    <lightning-carousel-image  key={currentCarouselObject.Id}  src={currentCarouselObject.imageURL} href={currentCarouselObject.link}>
+                    </lightning-carousel-image> 
+                </template>
+            </lightning-carousel>
+        </template>
+        
+        <template if:false={propertyScroll}>
+            <lightning-carousel disable-auto-scroll>
+                <template for:each={carousels}  for:item="currentCarouselObject">
+                    <lightning-carousel-image  key={currentCarouselObject.Id}  src={currentCarouselObject.imageURL} href={currentCarouselObject.link}>
+                    </lightning-carousel-image>
+                </template>
+            </lightning-carousel>
+        </template>
+    </template>
+
+</template>
